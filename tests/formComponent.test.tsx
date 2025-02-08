@@ -7,7 +7,7 @@ import {
 } from '../src'
 import { router } from '@inertiajs/react'
 import { Page, type PendingVisit } from '@inertiajs/core'
-import { get } from 'lodash'
+import { get } from 'lodash-es'
 import ContextTest from './components/ContextTest'
 import { multiRootData, singleRootData } from './components/data'
 import axios from 'axios'

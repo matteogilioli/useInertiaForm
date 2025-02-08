@@ -25,7 +25,7 @@ import {
 	type Path,
 	type PathValue,
 } from './utils'
-import { get, isEqual, isPlainObject, set } from 'lodash'
+import { get, isEqual, isPlainObject, set } from 'lodash-es'
 import { useFormMeta } from './Form/FormMetaWrapper'
 import axios, { AxiosResponse } from 'axios'
 

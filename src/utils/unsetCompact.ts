@@ -1,4 +1,4 @@
-import { unset, get  } from 'lodash'
+import { unset, get  } from 'lodash-es'
 import { type NestedObject } from '../useInertiaForm'
 
 /**

@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { router } from '@inertiajs/core'
 import { useInertiaForm } from '../src'
-import { get } from 'lodash'
+import { get } from 'lodash-es'
 import axios from 'axios'
 import { singleRootData } from './components/data'
 import { fillEmptyValues } from '../src/utils'
