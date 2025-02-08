@@ -1,0 +1,65 @@
+import { Method, type Page, type PageProps, type Progress, type VisitOptions as InertiaVisitOptions } from '@inertiajs/core';
+import { type Path, type PathValue } from './utils';
+import { AxiosResponse } from 'axios';
+type VisitOptions<TAsync extends boolean = boolean> = (Omit<InertiaVisitOptions, 'errors' | 'onSuccess'> & {
+    errors?: Record<string, string | string[]>;
+    async: TAsync;
+    onSuccess?: (page: TAsync extends true ? AxiosResponse<any, any> : Page<PageProps>) => void;
+});
+type OnChangeCallback = (key: string | undefined, value: unknown, prev: unknown) => void;
+export type Primitive = string | number | null | undefined;
+export type NestedObject = {
+    [key: string]: unknown | NestedObject | NestedObject[];
+};
+type setDataByPath<TForm> = <P extends Path<TForm>>(key: P, value: PathValue<TForm, P>) => void;
+type setDataByString = (key: string, value: unknown) => void;
+type setDataByObject<TForm> = (data: TForm) => void;
+type setDataByMethod<TForm> = (data: (previousData: TForm) => TForm) => void;
+type getDataByPath<TForm> = <P extends Path<TForm>>(key: P) => PathValue<TForm, P>;
+type getDataByString = (key: string) => unknown;
+type unsetDataByPath<TForm> = (key: Path<TForm>) => void;
+type unsetDataByString = (key: string) => void;
+type resetAll = () => void;
+type resetByPath<TForm> = (field: Path<TForm> | Path<TForm>[]) => void;
+type resetByString = (field: string | string[]) => void;
+type setErrorByPath<TForm> = (field: Path<TForm>, value: string | string[]) => void;
+type setErrorByString = (field: string, value: string | string[]) => void;
+type setErrorByObject = (errors: Record<string, string | string[]>) => void;
+type getErrorByPath<TForm> = (field: Path<TForm>) => string | string[] | undefined;
+type getErrorByString = (field: string) => string | string[] | undefined;
+type clearAllErrors = () => void;
+type clearErrorsByPath<TForm> = (field: Path<TForm> | Path<TForm>[]) => void;
+type clearErrorsByString = (field: string | string[]) => void;
+export interface UseInertiaFormProps<TForm> {
+    data: TForm;
+    isDirty: boolean;
+    errors: Partial<Record<keyof TForm, string | string[]>>;
+    hasErrors: boolean;
+    processing: boolean;
+    progress: Progress | null;
+    wasSuccessful: boolean;
+    recentlySuccessful: boolean;
+    setData: setDataByObject<TForm> & setDataByMethod<TForm> & setDataByPath<TForm> & setDataByString;
+    getData: getDataByPath<TForm> & getDataByString;
+    unsetData: unsetDataByPath<TForm> & unsetDataByString;
+    transform: (callback: (data: TForm) => TForm) => void;
+    onChange: (callback: OnChangeCallback) => void;
+    setDefaults(): void;
+    setDefaults(field: string, value: string): void;
+    setDefaults(fields: TForm): void;
+    reset: resetAll & resetByPath<TForm> & resetByString;
+    clearErrors: clearAllErrors & clearErrorsByPath<TForm> & clearErrorsByString;
+    setError: setErrorByPath<TForm> & setErrorByString & setErrorByObject;
+    getError: getErrorByPath<TForm> & getErrorByString;
+    submit: (method: Method, url: string, options?: VisitOptions) => void;
+    get: (url: string, options?: VisitOptions) => void;
+    patch: (url: string, options?: VisitOptions) => void;
+    post: (url: string, options?: VisitOptions) => void;
+    put: (url: string, options?: VisitOptions) => void;
+    delete: (url: string, options?: VisitOptions) => void;
+    cancel: () => void;
+}
+export default function useInertiaForm<TForm>(initialValues?: TForm): UseInertiaFormProps<TForm>;
+export default function useInertiaForm<TForm>(rememberKey: string, initialValues?: TForm): UseInertiaFormProps<TForm>;
+export {};
+//# sourceMappingURL=useInertiaForm.d.ts.map

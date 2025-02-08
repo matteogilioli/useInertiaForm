@@ -1,0 +1,1 @@
+{"version":3,"file":"inputStrategy.d.ts","sourceRoot":"","sources":["../../../src/useInertiaInput/inputStrategy.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,aAAa,GAAG,CAAC,IAAI,EAAE,MAAM,EAAE,KAAK,CAAC,EAAE,MAAM,KAAK;IAC7D,OAAO,EAAE,MAAM,CAAA;IACf,SAAS,EAAE,MAAM,CAAA;CACjB,CAAA;AAOD,QAAA,MAAM,aAAa,EAAE,aAoBpB,CAAA;AAED,eAAe,aAAa,CAAA"}
